@@ -14,8 +14,7 @@
         <h4 class="price">${{product.price}}</h4>
         <p class="description">{{product.description}}</p>
         <div id="quantity">
-          <button @click="quantity > 0 ? --quantity : quantity = 0"> - </button> {{quantity}} <button @click="quantity++"> + </button>
-        </div>
+          </div>
       <button id="add-to-cart" @click="addToCart()"> Add To Cart </button>
       </div>
 
@@ -41,7 +40,6 @@ const cartItems = ref(JSON.parse(localStorage.getItem('cartItems')))
 const product = ref([])
 const errorMessage = ref(['item added to box'])
 const fetchComplete = ref(false)
-const quantity = ref(0)
 
 // Methods To Get ITEM
 const getSingleProduct = async () => {
@@ -59,36 +57,32 @@ function addToCart () {
     productTitle: product.value.title,
     productRating: product.value.rating.rate,
     productID: product.value.productID,
-    productQuantity: quantity.value
+    productPrice: product.value.price,
+    productQuantity: 0
   })
-  // Step One Check If product Id is in items array
+  // Check if items Array == null;
   if (cartItems.value === null || cartItemsID.value === null) {
+    // if items Array is null equate items array to product id && equate cartItems to newcartItems
     cartItems.value = [newCartItem.value]
     cartItemsID.value = [productID.value]
+    // store Items Array && cartItems in local storage
     localStorage.setItem('cartItemsID', JSON.stringify(cartItemsID.value))
     localStorage.setItem('cartItems', JSON.stringify(cartItems.value))
-    console.log(cartItems.value)
-    console.log(cartItemsID.value)
-    console.log('item was null')
-    // if true : do nothing
-    // if false :
-    // Check if items Array == null;
-    // if items Array is null equate items array to product id && equate cartItems to newcartItems
-    // Stringify items Array && cartItems
-    // add product ID to items Array && add newCart Items to cartItems
-    // store Items Array && cartItems in local storage
+    state.error = false
   } else {
+    // Step One Check If product Id is in items array
     if ([productID.value].every(id => cartItemsID.value.includes(id)) === true) {
-      console.log('id is in items array')
-      return ''
+      // if true : do nothing
+      errorMessage.value = 'Item Already Added to Cart'
+      state.error = true
+      return errorMessage.value
     } else {
+      // add product ID to items Array && add newCart Items to cartItems
       cartItemsID.value = [...cartItemsID.value, productID.value]
       cartItems.value = [...cartItems.value, newCartItem.value]
+      // store Items Array && cartItems in local storage
       localStorage.setItem('cartItemsID', JSON.stringify(cartItemsID.value))
       localStorage.setItem('cartItems', JSON.stringify(cartItems.value))
-      console.log(cartItems.value)
-      console.log(cartItemsID.value)
-      console.log('added to items array')
     }
   }
 }

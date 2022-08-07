@@ -5,4 +5,3 @@ const state = reactive({
 })
 
 export { state }
-console.log(state.error)

@@ -1,11 +1,15 @@
 <template>
 <div id="rating-star">
+  <!-- Getting Rated Stars -->
     <div class="rating-image" v-for="index in Math.round(ratingNumber)" :key="index">
       <img src="../assets/images/star.svg" alt="">
   </div>
+  <!-- Getting the black stars for rating left -->
   <div class="rating-image" v-for="index in 5 - Math.round(ratingNumber)" :key="index">
        <img src="../assets/images/white-star.svg" alt="">
   </div>
+
+<!-- Number of people Rating the item -->
   <h3>( {{ratingCount}} )</h3>
 </div>
 </template>
@@ -18,8 +22,7 @@ export default {
       required: true
     },
     ratingCount: {
-      type: Number,
-      required: true
+      type: Number
     }
   }
 }

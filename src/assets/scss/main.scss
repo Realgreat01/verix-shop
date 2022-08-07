@@ -4,6 +4,7 @@
 @import './home';
 @import './product';
 @import './error';
+@import './cartbox';
 
 *{
     margin:0;
@@ -14,10 +15,17 @@
 body{
     background: linear-gradient(140deg, $primary, $secondary, $tertiary) no-repeat;
     min-height: 100vh;
+    overflow-y: scroll;
+    
 }
 
 a{
     text-decoration: none;
     font-weight: bold;
     color: inherit;
-  }
+}
+#header{
+    
+    display: flex;;
+    position: relative;
+}

@@ -1,6 +1,7 @@
 <template>
   <div id="product-grid" >
     <div v-for="( product,index) in products" :key="index" class="product">
+      <router-link :to="{ name: 'product', params: { id: product.id,}}">
         <div class="flex-rating">
             <h4 class="rating-rate">{{product.rating.rate}}</h4>
             <StarRating :ratingNumber="product.rating.rate" :ratingCount="product.rating.count" class="home-rating"/>
@@ -11,6 +12,7 @@
             <h4 class="price">${{product.price}}</h4>
             <h4 class="category">{{product.category}}</h4>
         </div>
+      </router-link>
   </div>
   </div>
 
@@ -18,12 +20,11 @@
 
 <script setup>
 import StarRating from '@/components/StarRating'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import { ref, defineProps, onMounted, watch } from 'vue'
 
 // Defining Ref Attributes
 const products = ref({})
-const router = useRouter()
 const route = useRoute()
 // Defining props
 const props = defineProps({

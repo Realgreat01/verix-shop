@@ -1,18 +1,12 @@
 <template>
 <NavBar/>
-<template>
-  <CartComponent />
-</template>
+<!-- Conditionally Show the Cart Items -->
+
   <router-view/>
 </template>
 
 <script setup>
 import NavBar from './components/NavBar.vue'
-import CartComponent from '@/components/CartComponent.vue'
-import showCart from './data/state'
-import { defineEmits } from 'vue'
-
-// const emit = defineEmits(['showCart'])
 </script>
 
 <style lang="scss">
