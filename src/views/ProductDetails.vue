@@ -13,8 +13,6 @@
         <h4 class="title">{{product.title}}</h4>
         <h4 class="price">${{product.price}}</h4>
         <p class="description">{{product.description}}</p>
-        <div id="quantity">
-          </div>
       <button id="add-to-cart" @click="addToCart()"> Add To Cart </button>
       </div>
 
@@ -26,7 +24,6 @@
 import { state } from '@/data/state'
 import ErrorBox from '@/components/ErrorBox.vue'
 import StarRating from '@/components/StarRating.vue'
-import axios from 'axios'
 import { ref, onMounted, defineProps } from 'vue'
 
 // Declaring Props
@@ -38,17 +35,21 @@ const productID = ref(parseInt(localStorage.getItem('productID')))
 const cartItemsID = ref(JSON.parse(localStorage.getItem('cartItemsID')))
 const cartItems = ref(JSON.parse(localStorage.getItem('cartItems')))
 const product = ref([])
-const errorMessage = ref(['item added to box'])
+const errorMessage = ref(null)
 const fetchComplete = ref(false)
 
 // Methods To Get ITEM
 const getSingleProduct = async () => {
-  const response = await fetch(`https://fakestoreapi.com/products/${productID.value}`)
-  const data = await response.json()
-  product.value = data
-  console.log(data)
-  fetchComplete.value = true
-  return product.value
+  try {
+    const response = await fetch(`https://fakestoreapi.com/products/${productID.value}`)
+    const data = await response.json()
+    product.value = data
+    fetchComplete.value = true
+    return product.value
+  } catch {
+    state.error = true
+    errorMessage.value = 'Oops!, We are unable to load item'
+  }
 }
 
 function addToCart () {
@@ -68,6 +69,8 @@ function addToCart () {
     // store Items Array && cartItems in local storage
     localStorage.setItem('cartItemsID', JSON.stringify(cartItemsID.value))
     localStorage.setItem('cartItems', JSON.stringify(cartItems.value))
+    state.getItemsInCart()
+
     state.error = false
   } else {
     // Step One Check If product Id is in items array
@@ -83,6 +86,7 @@ function addToCart () {
       // store Items Array && cartItems in local storage
       localStorage.setItem('cartItemsID', JSON.stringify(cartItemsID.value))
       localStorage.setItem('cartItems', JSON.stringify(cartItems.value))
+      state.getItemsInCart()
     }
   }
 }
@@ -90,6 +94,5 @@ function addToCart () {
 // Life Cycle Hooks
 onMounted(() => {
   getSingleProduct()
-  // console.log(cartItems.value)
 })
 </script>

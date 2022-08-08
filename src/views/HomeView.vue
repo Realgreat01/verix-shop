@@ -1,8 +1,16 @@
 <template>
+<!-- Error Checker -->
 <template v-if="state.error">
   <ErrorBox :errorMessage="errorMessage"/>
 </template>
-  <div id="product-grid" >
+
+<!-- Random Image Generator -->
+<div class="random-image">
+  <h1> Welcome to Our Store !</h1>
+</div>
+
+<!-- Category -->
+<div id="product-grid" >
     <div v-for="( product,index) in products" :key="index" class="product">
       <router-link :to="{ name: 'product', params: { id: product.id,}}">
 
@@ -40,7 +48,6 @@ async function getAllProducts () {
     const response = await fetch(`https://fakestoreapi.com/products?limit=${limit.value}`)
     const data = await response.json()
     products.value = data
-    console.log(data)
     state.error = false
     return products.value
   } catch (err) {

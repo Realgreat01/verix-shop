@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ProductDetails from '../views/ProductDetails.vue'
 import ProductCategory from '../views/ProductCategory.vue'
-import CartComponent from '../components/CartComponent.vue'
+import CartComponent from '../views/CartComponent.vue'
 
 const routes = [
   {
@@ -26,6 +26,11 @@ const routes = [
     path: '/cart',
     name: 'cart',
     component: CartComponent
+  },
+  {
+    path: '/:catchAll(.*)*',
+    name: 'NotFound',
+    component: HomeView
   }
 ]
 

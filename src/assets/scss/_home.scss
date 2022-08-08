@@ -17,6 +17,9 @@
 #product-grid{
     display:grid;
     grid-template-columns: repeat(4, 1fr);
+    @media (max-width: $small) {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 .product{
     max-width: 350px;
@@ -28,14 +31,24 @@
     justify-content: space-between;
     overflow: hidden;
     padding: 0;
+    @media (max-width: $small){
+        max-width: 100%;
+        margin: 10px 4px;
+    }
    
     .flex-rating{
         display:grid;
         grid-template-columns: 3fr 4fr;
         justify-content: space-between;
         margin:10px;
+        @media (max-width: $small){
+        grid-template-columns: 1fr 5fr;
+        }
         .home-rating{
             justify-self: end;
+            @media (max-width: $small){
+                height: 10px;
+            }
         }
         
     }
@@ -45,6 +58,10 @@
         margin: 10px auto;
         height: 50px;
         text-align: center;
+        @media (max-width: $small){
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
     }
     .product-image{
         height:150px;
@@ -52,12 +69,12 @@
         margin: 5px auto;
         display: block;
         mix-blend-mode:multiply;
-        background: $white;
     }
 
     .flex-price{
         display: flex;
         justify-content: space-between;
+        align-items: center;
         height: 50px;
         position: relative;
         bottom:0px;
@@ -72,6 +89,11 @@
         .category{
             text-transform: uppercase;
             opacity: 0.7;
+            
+            @media (max-width: $small){
+                font-size: 9px;
+
+            }
         }
     }
 }

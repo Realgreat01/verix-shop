@@ -2,6 +2,14 @@
 <template v-if="state.error">
   <ErrorBox :errorMessage = "errorMessage"/>
 </template>
+
+<!-- Cart is Empty -->
+<div id="empty-cart" v-if="cartIsEmpty">
+  <h1>Cart is Empty</h1>
+  <img src="../assets/images/empty-cart.svg" alt="empty-cart">
+ <div id="shop-link"> <router-link to="/">Go To Shop</router-link> </div>
+</div>
+
 <div id="cart-box">
   <div v-for="(product, index) in cartItems" :key="index" class="cart-item">
   <div id="product-info">
@@ -19,20 +27,24 @@
 </template>
 
 <script setup>
-import { state } from '@/data/state.js'
-import ErrorBox from './ErrorBox.vue'
-
-// Importing important variables
 import { ref, watch } from 'vue'
+import { state } from '@/data/state.js'
+import ErrorBox from '@/components/ErrorBox.vue'
+
+// Declaring important variables
 const cartItems = ref(JSON.parse(localStorage.getItem('cartItems')))
 const cartItemsID = ref(JSON.parse(localStorage.getItem('cartItemsID')))
 const errorMessage = ref('Out of Stock')
+const cartIsEmpty = ref(false)
 
 // Watching for State Changes in the Cart Items Content
-watch(cartItems, (oldValue, newValue) => {
-  cartItems.value = newValue.value
-})
+watch(cartItems, (updated, previous) => {
+  cartItems.value = updated
+},
+{ deep: true }
+)
 
+// Function for Deleted item
 function deleteItem (value) {
   const removedCartItems = cartItems.value.splice(value, 1)
   const removedCartItemsID = cartItemsID.value.splice(value, 1)
@@ -44,5 +56,19 @@ function deleteItem (value) {
   // Saving Filtered Item to LocalStorage
   localStorage.setItem('cartItemsID', JSON.stringify(filterCartID))
   localStorage.setItem('cartItems', JSON.stringify(filterCart))
+  state.getItemsInCart()
+
+  // Redirecting Users to Home id Cart is Empty
+  if (cartItemsID.value.length === 0) {
+    cartIsEmpty.value = true
+    state.getItemsInCart()
+  }
+  if (cartIsEmpty.value === true) {
+    state.getItemsInCart()
+  }
+}
+if (cartItemsID.value.length === 0) {
+  cartIsEmpty.value = true
+  state.getItemsInCart()
 }
 </script>

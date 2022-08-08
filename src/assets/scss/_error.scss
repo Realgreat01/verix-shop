@@ -5,6 +5,7 @@
     color: $white;
     margin: 0 auto;
     position: absolute;
+    overflow:hidden;
     z-index: 9;
     top: 50%;
     left: 50%;
@@ -12,6 +13,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 10px;
+    @media (max-width: $small){
+        width: 90%;
+        padding: 10px;
+    }
     p{
       font-weight: 700;
       font-size: 20px;
@@ -30,8 +36,15 @@
   #close-box{
     cursor: pointer;
     position: absolute;
-    top: 0;
-    right: 4px;
-    padding: 5px;
-    background: $secondary;
+    top: 0px;
+    right: 0px;
+    padding: 10px;
+    height: 35px;
+    width: 35px;
+    display:flex;
+    place-items: center;
+    background: $light;
+    img{
+      height: 15px;
+    }
   }

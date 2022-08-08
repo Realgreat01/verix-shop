@@ -10,7 +10,7 @@
   </div>
 
 <!-- Number of people Rating the item -->
-  <h3>( {{ratingCount}} )</h3>
+  <h3>(<span>{{ratingCount}}</span> <img src="../assets/images/person.svg" alt="">)</h3>
 </div>
 </template>
 
@@ -34,19 +34,29 @@ export default {
   justify-content: center;
   height:fit-content;
   .rating-image{
-    display:inline;
+    display:inline-block;
     align-items:center;
     max-width: 100px;
     img{
-      height: 14px;
+      height: 12px;
       margin: 2px;
     }
   }
   h3{
     display: inline;
-    margin: 0 5px;
+    font-size: 14px;
+    padding: 2px;
     font-weight: 500;
-    font-size: 16px;
+    span{
+      font-weight: 600;
+      color: crimson;
+      margin: 0 2px;
+      display: inline-block;
+      font-size: 12px;
+    }
+    img{
+      height: 10px;
+    }
   }
 }
 

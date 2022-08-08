@@ -1,31 +1,103 @@
+#mobile-nav{
+    display: none;
+}
 nav{
     width: 100%;
     margin: 10px auto 100px;
     display:flex;
     justify-content: space-around;
-    img{
+    position: relative;
+    z-index: 2;
+    #icon{
         height: 30px;
         display: block;
-    }
-    ul{
-        display:flex;
-        width: 60%;
-        justify-content: flex-end;
-        li{
-            width: 110px;
-            height: fit-content;
-            padding: 5px;
-            margin: 0 4px;
-            font-size: 11px;
-            text-align: center;
-            list-style-type: none;
-            color: $primary;
-            background: $secondary;
-            &:hover{
-            background: $tertiary;
-            color: $primary;
-            }
+        align-self: start;
+        margin-left: 0px;
+        @media (max-width: $small){
+            height: 15px;
         }
     }
-    
+
+    #desktop-nav{
+        @media (max-width: $small){
+            display: none;
+        }
+    }
+}
+#cart-content-box{
+    position: relative;
+    display: flex;
+    #cart{
+        height: 30px;
+        display: block;
+        align-self: flex-end;
+        @media (max-width: $small){
+            height: 30px;
+        }
+    }
+    p{
+        position: absolute;
+        top: -10px;
+        right: -5px;
+        height: 20px;
+        width: 20px;
+        background: $secondary;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 14px;
+        border-radius: 50%;
+    }
+}
+ul{
+    display:flex;
+    width: 60%;
+    justify-content: flex-end;
+    li{
+        width: 110px;
+        height: fit-content;
+        padding: 5px;
+        margin: 0 4px;
+        font-size: 11px;
+        text-align: center;
+        list-style-type: none;
+        color: $primary;
+        background: $secondary;
+        &:hover{
+        background: $tertiary;
+        color: $primary;
+        }
+    }
+}
+#mobile-nav{
+    @media (max-width: $small){
+        display:flex;
+        flex-direction: column;
+        background:$secondary;
+        justify-content: flex-start;
+        align-items: flex-end;
+        width: 100%;
+        position: absolute;
+        top:40px;
+        li{
+            text-align: right;
+            margin: 2px 0;
+            width: 96vw;
+            text-transform: uppercase;
+        }
+    }
+}
+
+#toggle{
+    display: none;
+    img{
+        display: block;
+        position: absolute;
+        height: 20px;
+        width: 20px;
+    } 
+    @media (max-width: $small){
+        display: flex;
+    }
 }

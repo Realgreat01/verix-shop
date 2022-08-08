@@ -1,7 +1,5 @@
 <template>
-<NavBar/>
-<!-- Conditionally Show the Cart Items -->
-
+  <NavBar/>
   <router-view/>
 </template>
 

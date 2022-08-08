@@ -1,6 +1,6 @@
 <template>
   <div id="error">
-    <h2 @click="closeBox()" id="close-box">x</h2>
+    <h2 @click="closeBox()" id="close-box"><img src="../assets/images/cancel.svg" alt=""></h2>
    <p> {{props.errorMessage}} </p>
   </div>
   <div  id="resolve-error">
@@ -19,7 +19,6 @@ const props = defineProps({
 
 function closeBox () {
   state.error = false
-  console.log(state.error)
   return state.error
 }
 </script>
