@@ -59,7 +59,7 @@ function addToCart () {
     productRating: product.value.rating.rate,
     productID: product.value.productID,
     productPrice: product.value.price,
-    productQuantity: 0
+    productQuantity: 1
   })
   // Check if items Array == null;
   if (cartItems.value === null || cartItemsID.value === null) {

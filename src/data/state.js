@@ -6,18 +6,11 @@ const state = reactive({
   itemsInCart: 0,
   itemsArray: [],
   getItemsInCart () {
-    const addedItems = JSON.parse(localStorage.getItem('cartItems'))
+    const addedItems = JSON.parse(localStorage.getItem('cartItemsID'))
     if (addedItems !== [] && addedItems !== 'null') {
-      addedItems.map((items, index) => {
-        this.itemsArray.push(index)
-        return this.itemsArray
-      })
-      if (addedItems.length !== 0) {
-        const itemsLeft = this.itemsArray.reduce((a, b) => { return b + a }, 1)
-        this.itemsInCart = itemsLeft
-      } else {
-        this.itemsInCart = 0
-      }
+      this.itemsInCart = addedItems.length
+    } else {
+      this.itemsInCart = 0
     }
     return this.itemsInCart
   },
@@ -29,4 +22,5 @@ const state = reactive({
     }
   }
 })
+state.getItemsInCart()
 export { state }
