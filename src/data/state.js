@@ -13,8 +13,8 @@ const state = reactive({
         return this.itemsArray
       })
       if (addedItems.length !== 0) {
-        const itemsLeft = this.itemsArray.reduce((a, b) => { return b + a })
-        this.itemsInCart = itemsLeft + 1
+        const itemsLeft = this.itemsArray.reduce((a, b) => { return b + a }, 1)
+        this.itemsInCart = itemsLeft
       } else {
         this.itemsInCart = 0
       }
