@@ -19,11 +19,11 @@
   </nav>
   <!-- Mobile-nav -->
   <ul id="mobile-nav" v-if="menuIsShown">
-    <router-link to="/"><li> Home </li></router-link>
-    <router-link :to="{name: 'product-category', params: {category: `jewelery`}}"> <li>Jewelery </li></router-link>
-    <router-link :to="{name: 'product-category', params: {category: `women's clothing`}}"><li> Women's Clothing </li> </router-link>
-    <router-link :to="{name: 'product-category', params: {category: `men's clothing` }}"><li> Men's Clothing </li></router-link>
-    <router-link :to="{name: 'product-category', params: {category: 'electronics'}}"><li> Electronics </li></router-link>
+    <router-link @click="menuIsShown = false" to="/"><li> Home </li></router-link>
+    <router-link @click="menuIsShown = false" :to="{name: 'product-category', params: {category: `jewelery`}}"> <li>Jewelery </li></router-link>
+    <router-link @click="menuIsShown = false" :to="{name: 'product-category', params: {category: `women's clothing`}}"><li> Women's Clothing </li> </router-link>
+    <router-link @click="menuIsShown = false" :to="{name: 'product-category', params: {category: `men's clothing` }}"><li> Men's Clothing </li></router-link>
+    <router-link @click="menuIsShown = false" :to="{name: 'product-category', params: {category: 'electronics'}}"><li> Electronics </li></router-link>
   </ul>
 
 </template>
@@ -33,6 +33,6 @@ import CartComponent from '@/views/CartComponent.vue'
 import { state } from '@/data/state'
 import { ref } from 'vue'
 
-const menuIsShown = ref(true)
+const menuIsShown = ref(false)
 const router = useRouter()
 </script>
