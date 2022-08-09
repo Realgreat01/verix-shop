@@ -22,5 +22,5 @@ const state = reactive({
     }
   }
 })
-state.getItemsInCart()
+// state.getItemsInCart()
 export { state }
