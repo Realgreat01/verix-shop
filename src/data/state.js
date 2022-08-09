@@ -10,7 +10,8 @@ const state = reactive({
   itemsArray: [],
   getItemsInCart () {
     const addedItems = JSON.parse(localStorage.getItem('cartItemsID'))
-    if (addedItems === true ) {
+    const check = Boolean(addedItems)
+    if (check) {
       this.itemsInCart = addedItems.length
     } else {
       this.itemsInCart = 0

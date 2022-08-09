@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import { state } from '@/data/state.js'
 import ErrorBox from '@/components/ErrorBox.vue'
 
@@ -67,8 +67,11 @@ function deleteItem (value) {
     state.getItemsInCart()
   }
 }
-if (cartItemsID.value.length === 0) {
-  cartIsEmpty.value = true
-  state.getItemsInCart()
-}
+onMounted(() => {
+  console.log(cartItemsID.value)
+  if (cartItemsID.value === null) {
+    cartIsEmpty.value = true
+    state.getItemsInCart()
+  }
+})
 </script>
