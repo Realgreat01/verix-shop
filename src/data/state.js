@@ -1,5 +1,8 @@
 import { reactive, watch } from 'vue'
 const body = document.body
+// if (localStorage.setItem('cartItemsID', []) === false) {
+//   localStorage.getItem('cartItemsID', [])
+// }
 const state = reactive({
   error: false,
   showCart: true,
@@ -7,7 +10,7 @@ const state = reactive({
   itemsArray: [],
   getItemsInCart () {
     const addedItems = JSON.parse(localStorage.getItem('cartItemsID'))
-    if (addedItems !== [] && addedItems !== 'null') {
+    if (addedItems === true ) {
       this.itemsInCart = addedItems.length
     } else {
       this.itemsInCart = 0
